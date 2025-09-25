@@ -27,14 +27,14 @@ export default function SecruityScreen() {
   //check login session when screen is focused
   useFocusEffect(
     useCallback(() => {
-      FetchAPI("login_check").then((session) => {
+      FetchAPI("*").then((session) => {
         session.status == 0 ? router.replace("/login") : FetchSecurityQuestion();
       });
     }, [])
   );
 
   function FetchSecurityQuestion() {
-    FetchAPI("sq1/display").then((data) => {
+    FetchAPI("*").then((data) => {
       //console.log("sq1: ", data);
       if (data) {
         setText1(data[0].sq_question_text);
@@ -43,7 +43,7 @@ export default function SecruityScreen() {
         setValue1("0");
       }
     });
-    FetchAPI("sq2/display").then((data) => {
+    FetchAPI("*").then((data) => {
       //console.log("sq2: ", data);
       if (data) {
         setText2(data[0].sq_question_text);
@@ -57,11 +57,11 @@ export default function SecruityScreen() {
   function CheckSecurityQuestion() {
     setLoading(true);
     const formData = new FormData();
-    formData.append("sq1", value1);
-    formData.append("a1", answer1);
-    formData.append("sq2", value2);
-    formData.append("a2", answer2);
-    PostAPI("secure", formData).then((response) => {
+    formData.append("*", value1);
+    formData.append("*", answer1);
+    formData.append("*", value2);
+    formData.append("*", answer2);
+    PostAPI("*", formData).then((response) => {
       setLoading(false);
       //console.log(response[0].information);
       if (response[0].information[0].sec_status == "pass") {

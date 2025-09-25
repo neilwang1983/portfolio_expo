@@ -15,9 +15,9 @@ export default function PasswordChangeScreen() {
   function ChangePassword() {
     setLoading(true);
     const formData = new FormData();
-    formData.append("oldpassword", password1);
-    formData.append("password1", password2);
-    formData.append("password2", password3);
+    formData.append("*", password1);
+    formData.append("*", password2);
+    formData.append("*", password3);
     //console.log(formData);
     PostAPI("*", formData).then((data) => {
       setLoading(false);

@@ -31,7 +31,7 @@ export default function CashoutScreen() {
   );
 
   const FetchProfile = () => {
-    FetchAPI("profile").then((data) => {
+    FetchAPI("*").then((data) => {
       //console.log(data);
       if (data[1].errors[0].code == "000") {
         setProfile(data[0].information[0]);
@@ -106,7 +106,7 @@ export default function CashoutScreen() {
                 able to view this and other Cashouts in your Account Summary under Transaction History.
               </Text>
 
-              <TouchableOpacity style={styles.CashoutButton} onPress={() => requestCashout("7")}>
+              <TouchableOpacity style={styles.CashoutButton} onPress={() => requestCashout()}>
                 <Text style={styles.CashoutButtonText}>Cashout</Text>
               </TouchableOpacity>
 

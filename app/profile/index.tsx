@@ -49,10 +49,9 @@ export default function ProfileScreen() {
 
     if (deviceToken) {
       const formData = new FormData();
-      formData.append("deviceToken", deviceToken);
-      formData.append("deviceType", deviceType);
-      PostAPI("pnsc", formData).then((pnsc) => {
-        //console.log(pnsc);
+      formData.append("*", deviceToken);
+      formData.append("*", deviceType);
+      PostAPI("*", formData).then((pnsc) => {
         if (pnsc[0].status_ups) {
           setNotificationStatus(true);
         } else {
@@ -65,10 +64,10 @@ export default function ProfileScreen() {
   function SetPushNotificationStatus() {
     setUpdating(true);
     const formData = new FormData();
-    formData.append("deviceToken", deviceToken);
-    formData.append("deviceType", deviceType);
+    formData.append("*", deviceToken);
+    formData.append("*", deviceType);
     notificationStatus ? formData.append("UserPreferenceSettings", "0") : formData.append("UserPreferenceSettings", "1");
-    PostAPI("pnsu", formData).then((pnsu) => {
+    PostAPI("*", formData).then((pnsu) => {
       setUpdating(false);
       console.log(pnsu[0].message_ups);
       setNotificationStatus(pnsu[0].status_ups);
@@ -77,7 +76,7 @@ export default function ProfileScreen() {
 
   function gotoEditProfile() {
     setLoading(true);
-    FetchAPI("profile").then((data) => {
+    FetchAPI("*").then((data) => {
       setLoading(false);
       if (data[1].errors[0].code == "000") {
         router.push({

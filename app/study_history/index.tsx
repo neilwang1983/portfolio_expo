@@ -26,10 +26,10 @@ export default function StudyHistoryScreen() {
   //check login session when screen is focused
   useFocusEffect(
     useCallback(() => {
-      FetchAPI("login_check").then((session) => {
+      FetchAPI("*").then((session) => {
         session.status == 0
           ? router.replace("/login")
-          : FetchAPI("history").then((data) => {
+          : FetchAPI("*").then((data) => {
               setHistory(data);
               setLoading(false);
             });

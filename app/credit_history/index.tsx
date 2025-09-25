@@ -25,10 +25,10 @@ export default function CreditHistoryScreen() {
   //check login session when screen is focused
   useFocusEffect(
     useCallback(() => {
-      FetchAPI("login_check").then((session) => {
+      FetchAPI("*").then((session) => {
         session.status == 0
           ? router.replace("/login")
-          : FetchAPI("balance").then((data: balance[]) => {
+          : FetchAPI("*").then((data: balance[]) => {
               setHistory(data[0].Credits);
               setLoading(false);
             });

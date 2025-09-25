@@ -48,7 +48,7 @@ export default function RegisterScreen() {
   useEffect(() => {
     setPhone(cellphone);
 
-    FetchAPI("sq1").then((data) => {
+    FetchAPI("*").then((data) => {
       //console.log(data);
       let res1: ItemType<number>[] = [];
       data.map((item: sq) => {
@@ -59,7 +59,7 @@ export default function RegisterScreen() {
       });
       setSQ1List(res1);
     });
-    FetchAPI("sq2").then((data) => {
+    FetchAPI("*").then((data) => {
       //console.log(data);
       let res2: ItemType<number>[] = [];
       data.map((item: sq) => {
@@ -74,20 +74,20 @@ export default function RegisterScreen() {
 
   function Register() {
     setLoading(true);
-    formData.append("email1", email1);
-    formData.append("email2", email2);
-    formData.append("password", password1);
-    formData.append("password2", password2);
-    formData.append("cphone", phone);
-    formData.append("sq1", sq1.toString());
-    formData.append("a1", a1);
-    formData.append("sq2", sq2.toString());
-    formData.append("a2", a2);
-    formData.append("agreement", agreement && sms ? "1" : "0");
+    formData.append("*", email1);
+    formData.append("*", email2);
+    formData.append("*", password1);
+    formData.append("*", password2);
+    formData.append("*", phone);
+    formData.append("*", sq1.toString());
+    formData.append("*", a1);
+    formData.append("*", sq2.toString());
+    formData.append("*", a2);
+    formData.append("*", agreement && sms ? "1" : "0");
 
     console.log(formData);
 
-    PostAPI("register", formData).then((data) => {
+    PostAPI("*", formData).then((data) => {
       setLoading(false);
       setModalVisible(true);
       let message = decodeURIComponent(data[1].errors[0].message.replace(/\+/g, " "));

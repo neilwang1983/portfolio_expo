@@ -10,8 +10,7 @@ export default function PasswordResetScreen() {
   const [message, setMessage] = useState("");
 
   function ResetPassword() {
-    FetchAPI("forgot/" + email).then((data) => {
-      //console.log(data);
+    FetchAPI("*").then((data) => {
       setMessage(data[0].Message);
     });
   }

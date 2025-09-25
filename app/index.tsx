@@ -66,19 +66,19 @@ export default function StartScreen() {
     setLoading(true);
 
     //check profile completion
-    FetchAPI("profilecheck")
+    FetchAPI("*")
       .then((json) => json.json())
       .then((data) => setProfileComplete(data.completed));
 
-    FetchAPI("balance").then((data) => {
+    FetchAPI("*").then((data) => {
       setBalance(data[0].Balance);
       //console.log(data[0]);
     });
-    FetchAPI("premier").then((data) => {
+    FetchAPI("*").then((data) => {
       data[0].message ? setPremier([]) : setPremier(data);
       //console.log(data);
     });
-    FetchAPI("global").then((data) => {
+    FetchAPI("*").then((data) => {
       data[0].message ? setGlobal([]) : setGlobal(data);
       setLoading(false);
       //console.log(data);
@@ -87,7 +87,7 @@ export default function StartScreen() {
 
   function gotoCashout() {
     setProfileCheck(true);
-    FetchAPI("profile").then((data) => {
+    FetchAPI("*").then((data) => {
       //console.log(data);
       setProfileCheck(false);
       if (data[1].errors[0].code == "000") {
@@ -106,7 +106,7 @@ export default function StartScreen() {
 
   function gotoEditProfile() {
     setProfileLoading(true);
-    FetchAPI("profile").then((data) => {
+    FetchAPI("*").then((data) => {
       setProfileLoading(false);
       if (data[1].errors[0].code == "000") {
         router.push({ pathname: "/profile_edit", params: { from: "/" } });

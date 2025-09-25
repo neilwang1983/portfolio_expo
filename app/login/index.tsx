@@ -16,8 +16,7 @@ export default function LoginScreen() {
   function CheckLogin() {
     setLoading(true);
     SignIn(email, password).then((login) => {
-      //console.log(login);
-      FetchAPI("login_check").then((response) => {
+      FetchAPI("*").then((response) => {
         setLoading(false);
         if (response[0].status == 1) {
           router.replace("/");

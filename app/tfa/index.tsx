@@ -66,10 +66,10 @@ export default function TFAScreen() {
     setMessage1("");
     setCodeRequesting(true);
     const formData = new FormData();
-    formData.append("cphone", phone);
-    formData.append("deviceToken", deviceToken);
+    formData.append("*", phone);
+    formData.append("*", deviceToken);
     console.log(formData);
-    PostAPI("tfacall", formData).then((response) => {
+    PostAPI("*", formData).then((response) => {
       console.log(response);
       setCodeRequesting(false);
       if (response[0].tfac_status == "0") {
@@ -87,10 +87,10 @@ export default function TFAScreen() {
     setMessage2("");
     setCodeVerifying(true);
     const formData = new FormData();
-    formData.append("cphone", phone);
-    formData.append("deviceToken", deviceToken);
-    formData.append("tfacode", passcode);
-    PostAPI("tfaresp", formData).then((response) => {
+    formData.append("*", phone);
+    formData.append("*", deviceToken);
+    formData.append("*", passcode);
+    PostAPI("*", formData).then((response) => {
       console.log(response);
       setCodeVerifying(false);
       if (response[0].tfar_status == "0") {

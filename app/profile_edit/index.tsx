@@ -38,7 +38,7 @@ export default function EditProfileScreen() {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    FetchAPI("ethnicity").then((data) => {
+    FetchAPI("*").then((data) => {
       //console.log(data);
       let res: ItemType<number>[] = [];
       data.map((item: Ethnicity) => {
@@ -53,8 +53,7 @@ export default function EditProfileScreen() {
   }, []);
 
   function fetchProfile() {
-    FetchAPI("profile").then((data) => {
-      //console.log(data[0]);
+    FetchAPI("*").then((data) => {
       if (data[1].errors[0].code == "000") {
         const p = data[0].information[0];
         isValid(p.mail) ? setEmail(p.mail) : setEmail("");
@@ -96,28 +95,28 @@ export default function EditProfileScreen() {
 
   function UpdateProfile() {
     setSubmitting(true);
-    formData.append("firstname", firstname);
-    formData.append("lastname", lastname);
-    formData.append("mail", email);
-    formData.append("cphone", cellphone);
-    formData.append("hphone", homephone);
-    formData.append("address1", address1);
-    formData.append("address2", address2);
-    formData.append("city", city);
-    formData.append("state", state);
-    formData.append("country", country);
-    formData.append("zip", zip);
-    formData.append("firstname", firstname);
-    formData.append("lastname", lastname);
-    formData.append("gender", gender.toString());
-    formData.append("ethnicity", ethnicity.toString());
-    formData.append("ydob", year);
-    formData.append("mdob", month);
-    formData.append("ddob", day);
+    formData.append("*", firstname);
+    formData.append("*", lastname);
+    formData.append("*", email);
+    formData.append("*", cellphone);
+    formData.append("*", homephone);
+    formData.append("*", address1);
+    formData.append("*", address2);
+    formData.append("*", city);
+    formData.append("*", state);
+    formData.append("*", country);
+    formData.append("*", zip);
+    formData.append("*", firstname);
+    formData.append("*", lastname);
+    formData.append("*", gender.toString());
+    formData.append("*", ethnicity.toString());
+    formData.append("*", year);
+    formData.append("*", month);
+    formData.append("*", day);
 
     //console.log(formData);
 
-    PostAPI("profileupdate", formData).then((data) => {
+    PostAPI("*", formData).then((data) => {
       setSubmitting(true);
       //console.log(data[0]);
       //console.log(data[1]);

@@ -25,7 +25,7 @@ function CashoutResultScreen() {
 
   const cashout = () => {
     if (method !== "undefined") {
-      FetchAPI("cashout/" + method).then((response) => {
+      FetchAPI("*").then((response) => {
         console.log(response);
         setMessage(response[1].errors[0].message.replace(/\+/g, " "));
         if (response[1].errors[0].code == "000") {
