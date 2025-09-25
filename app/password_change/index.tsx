@@ -19,7 +19,7 @@ export default function PasswordChangeScreen() {
     formData.append("password1", password2);
     formData.append("password2", password3);
     //console.log(formData);
-    PostAPI("changepassword", formData).then((data) => {
+    PostAPI("*", formData).then((data) => {
       setLoading(false);
       //console.log(data);
       if (data[1].errors[0].code == "000") {
